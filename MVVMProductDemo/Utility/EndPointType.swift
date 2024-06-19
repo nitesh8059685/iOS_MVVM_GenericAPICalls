@@ -19,55 +19,8 @@ protocol EndPointType {
     var baseURL: String { get }
     var url: URL? { get }
     var method: HTTPMethods { get }
+    var body: Encodable? { get }
+    var headers: [String : String]? { get }
 }
 
-// this is the enum for all the modules in the system
 
-enum EndPointItems {
-    case products     //module
-    case A    //Example module
-    case B    //Example module
-    case C    //Example module
-}
-
-//  https://fakestoreapi.com/products
-
-
-extension EndPointItems : EndPointType {
-    var path: String {
-        switch self {
-        case .products:
-            return "products"
-        case .A:
-            return "A"
-        case .B:
-            return "B"
-        case .C:
-            return "C"
-        }
-    }
-    
-    var baseURL: String {
-        return "https://fakestoreapi.com/"
-    }
-    
-    var url: URL? {
-        return URL(string: "\(baseURL)\(path)")
-    }
-    
-    var method: HTTPMethods {
-        switch self {
-        case .products:
-            return .get
-            
-        case .A:
-            return .post
-        case .B:
-            return .put
-        case .C:
-            return .delete
-        }
-    }
-    
-    
-}
